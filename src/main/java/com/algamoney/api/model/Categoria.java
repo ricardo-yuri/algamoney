@@ -1,6 +1,12 @@
 package com.algamoney.api.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
@@ -12,7 +18,9 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    private String nome;
+    @NotNull
+    @Size(min = 3, max = 20)
+    private String nomeCategoria;
 
     public Long getCodigo() {
         return codigo;
@@ -23,11 +31,11 @@ public class Categoria {
     }
 
     public String getNome() {
-        return nome;
+        return nomeCategoria;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
     }
 
     @Override
@@ -35,11 +43,11 @@ public class Categoria {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Categoria categoria = (Categoria) o;
-        return codigo.equals(categoria.codigo) && Objects.equals(nome, categoria.nome);
+        return codigo.equals(categoria.codigo) && Objects.equals(nomeCategoria, categoria.nomeCategoria);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codigo, nome);
+        return Objects.hash(codigo, nomeCategoria);
     }
 }
