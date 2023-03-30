@@ -16,7 +16,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @ControllerAdvice
@@ -29,7 +28,7 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         String msgUsuario = messageSource.getMessage("mensagem.invalida", null, LocaleContextHolder.getLocale());
         String msgDev = ex.getCause().toString();
-        List<Erro> erros = Arrays.asList(new Erro(msgUsuario, msgDev));
+        List<Erro> erros = List.of(new Erro(msgUsuario, msgDev));
         return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
     }
 
