@@ -34,4 +34,10 @@ public class PessoaResource {
         publisher.publishEvent(new RecursoCriadoEvent(this, response, pessoa.getCodigo()));
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoa);
     }
+
+    @DeleteMapping("/{codigo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long codigo) {
+        pessoaRepository.deleteById(codigo);
+    }
 }
