@@ -1,21 +1,19 @@
 package com.algamoney.api.resource;
 
 import com.algamoney.api.event.RecursoCriadoEvent;
-import com.algamoney.api.model.Categoria;
 import com.algamoney.api.model.Pessoa;
-import com.algamoney.api.repository.CategoriaRepository;
 import com.algamoney.api.repository.PessoaRepository;
+import com.algamoney.api.service.PessoaService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import org.apache.catalina.core.ApplicationPushBuilder;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -23,6 +21,9 @@ public class PessoaResource {
 
     @Autowired
     private PessoaRepository pessoaRepository;
+
+    @Autowired
+    private PessoaService pessoaService;
 
     @Autowired
     private ApplicationEventPublisher publisher;
@@ -39,5 +40,10 @@ public class PessoaResource {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long codigo) {
         pessoaRepository.deleteById(codigo);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Pessoa> updatePessoa(@PathVariable Long id, @RequestBody Pessoa pessoa) {
+        return ResponseEntity.ok(pessoaService.atualizar(id, pessoa));
     }
 }

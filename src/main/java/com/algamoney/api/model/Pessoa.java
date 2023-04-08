@@ -16,6 +16,9 @@ public class Pessoa {
     @NotNull
     private String nome;
 
+    @Embedded
+    private Endereco endereco;
+
     @NotNull
     private boolean ativo;
 
