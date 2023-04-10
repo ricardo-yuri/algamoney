@@ -14,6 +14,10 @@ public class LancamentoService {
     @Autowired
     private LancamentoRepository lancamentoRepository;
 
+    public Lancamento create(Lancamento lancamento) {
+        return lancamentoRepository.save(lancamento);
+    }
+
     public Lancamento find(Long id){
         Optional<Lancamento> lanc = lancamentoRepository.findById(id);
         if(lanc.isPresent()){
