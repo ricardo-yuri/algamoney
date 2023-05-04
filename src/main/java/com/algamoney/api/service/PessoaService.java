@@ -21,4 +21,8 @@ public class PessoaService {
             pessoaRepository.save(originPessoa.get());}
         return originPessoa.get();
     }
+
+    public List<Pessoa> findAll() {
+        return pessoa.findAll();
+    }
 }

@@ -46,4 +46,9 @@ public class PessoaResource {
     public ResponseEntity<Pessoa> updatePessoa(@PathVariable Long id, @RequestBody Pessoa pessoa) {
         return ResponseEntity.ok(pessoaService.atualizar(id, pessoa));
     }
+
+    @GetMapping
+    public ResponseEntity<List<Pessoa>> findAll() {
+        return ResponseEntity.ok(pessoaService.findAll());
+    }
 }
