@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,5 +21,9 @@ public class PessoaService {
             BeanUtils.copyProperties(pessoa, originPessoa.get(), "codigo");
             pessoaRepository.save(originPessoa.get());}
         return originPessoa.get();
+    }
+
+    public List<Pessoa> findAll() {
+        return pessoaRepository.findAll();
     }
 }
