@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,6 @@ public class PessoaService {
     }
 
     public List<Pessoa> findAll() {
-        return pessoa.findAll();
+        return pessoaRepository.findAll();
     }
 }
